@@ -5,11 +5,11 @@ public abstract class Produto
 	private String nome;
 	private String modelo;
 	private String cor;
-	private String preco;
 	private String descricao;
 	private String tipo;
 	private String material;
 	private String guidao;
+	private double preco;
 	private double peso;
 	
 	public String getNome()
@@ -42,12 +42,12 @@ public abstract class Produto
 		this.cor = cor;
 	}
 	
-	public String getPreco()
+	public double getPreco()
 	{
 		return preco;
 	}
 	
-	public void setPreco(String preco)
+	public void setPreco(double preco)
 	{
 		this.preco = preco;
 	}

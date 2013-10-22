@@ -3,7 +3,7 @@ package br.com.metodo.model;
 public class Bicicleta extends Produto
 {
 	private int aro;
-	private int freio;
+	private String freio;
 	private String pneu;
 	private String banco;
 	private String marcha;
@@ -19,12 +19,12 @@ public class Bicicleta extends Produto
 		this.aro = aro;
 	}
 
-	public int getFreio()
+	public String getFreio()
 	{
 		return freio;
 	}
 
-	public void setFreio(int freio)
+	public void setFreio(String freio)
 	{
 		this.freio = freio;
 	}

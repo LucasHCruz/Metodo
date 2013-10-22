@@ -1,5 +1,8 @@
 package br.com.metodo.dao;
 
+import java.util.List;
+
+import br.com.metodo.model.Bicicleta;
 import br.com.metodo.model.Patinete;
 
 public class PatineteDAO implements DAO<Patinete>
@@ -12,7 +15,7 @@ public class PatineteDAO implements DAO<Patinete>
 	}
 
 	@Override
-	public Patinete read(Patinete object)
+	public List<Patinete> read()
 	{
 		// TODO Auto-generated method stub
 		return null;
