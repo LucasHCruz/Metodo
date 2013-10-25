@@ -1,3 +1,4 @@
+//This had to be done!
 package br.com.metodo.model;
 
 public abstract class Produto
