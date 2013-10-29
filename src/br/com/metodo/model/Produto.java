@@ -1,16 +1,30 @@
+<<<<<<< HEAD
+=======
+//This had to be done!
+>>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 package br.com.metodo.model;
 
 public abstract class Produto
 {
+<<<<<<< HEAD
 	private int codigo;
 	private String nome;
 	private String modelo;
 	private String cor;
 	private double preco;
+=======
+	private String nome;
+	private String modelo;
+	private String cor;
+>>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 	private String descricao;
 	private String tipo;
 	private String material;
 	private String guidao;
+<<<<<<< HEAD
+=======
+	private double preco;
+>>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 	private double peso;
 	
 	public String getNome()
@@ -102,6 +116,7 @@ public abstract class Produto
 	{
 		this.guidao = guidao;
 	}
+<<<<<<< HEAD
 
 	public int getCodigo()
 	{
@@ -112,4 +127,7 @@ public abstract class Produto
 	{
 		this.codigo = codigo;
 	}	
+=======
+	
+>>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 }

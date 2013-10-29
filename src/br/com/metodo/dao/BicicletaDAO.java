@@ -16,9 +16,16 @@ public class BicicletaDAO implements DAO<Bicicleta>
 	@Override
 	public void create(Bicicleta bicicleta)
 	{
+<<<<<<< HEAD
 		String sql = "INSERT INTO bicicleta (codigo,nome,modelo,cor,preco,descricao,tipo,material,guidao,peso,aro,freio,pneu,banco,marcha,amortecedor) VALUES(seq_numero.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try
 		{
+=======
+		String sql = "INSERT INTO BICICLETA (nome,modelo,cor,preco,descricao,tipo,material,guidao,peso,aro,freio,pneu,banco,marcha,amortecedor) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		try
+		{
+			conn.setAutoCommit(false);
+>>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
 			ps.setString(1, bicicleta.getNome());
@@ -39,6 +46,11 @@ public class BicicletaDAO implements DAO<Bicicleta>
 			
 			ps.execute();
 			ps.close();
+<<<<<<< HEAD
+=======
+			conn.commit();
+			conn.setAutoCommit(false);
+>>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 			conn.close();
 		}
 		catch(SQLException ex)
@@ -50,7 +62,11 @@ public class BicicletaDAO implements DAO<Bicicleta>
 	@Override
 	public List<Bicicleta> read()
 	{
+<<<<<<< HEAD
 		String sql = "SELECT * FROM bicicleta";
+=======
+		String sql = "SELECT * FROM BICICLETA";
+>>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 		try
 		{
 			List<Bicicleta> bicicletas = new ArrayList<Bicicleta>();
@@ -61,7 +77,10 @@ public class BicicletaDAO implements DAO<Bicicleta>
 			{
 				Bicicleta bicicleta = new Bicicleta();
 				
+<<<<<<< HEAD
 				bicicleta.setCodigo(rs.getInt("CODIGO"));
+=======
+>>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 				bicicleta.setAmortecedor(rs.getString("AMORTECEDOR"));
 				bicicleta.setAro(rs.getInt("ARO"));
 				bicicleta.setBanco(rs.getString("BANCO"));
@@ -90,6 +109,7 @@ public class BicicletaDAO implements DAO<Bicicleta>
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void update(Bicicleta bicicleta)
 	{
 			String sql = "UPDATE INTO bicicleta (nome,modelo,cor,preco,descricao,tipo,material,guidao,peso,aro,freio,pneu,banco,marcha,amortecedor) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) WHERE codigo = ?";
@@ -117,10 +137,25 @@ public class BicicletaDAO implements DAO<Bicicleta>
 				ps.execute();
 				ps.close();
 				conn.close();
+=======
+	public void update(Bicicleta object)
+	{
+		String sql = "";
+		try
+		{
+			conn.setAutoCommit(false);
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.execute();
+			ps.close();
+			conn.commit();
+			conn.setAutoCommit(false);
+			conn.close();
+>>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 		}
 		catch(SQLException ex)
 		{
 			throw new RuntimeException(ex);
+<<<<<<< HEAD
 		}		
 	}
 
@@ -136,11 +171,34 @@ public class BicicletaDAO implements DAO<Bicicleta>
 			
 			ps.execute();
 			ps.close();
+=======
+		}
+		
+	}
+
+	@Override
+	public void delete(Bicicleta object)
+	{
+		String sql = "";
+		try
+		{
+			conn.setAutoCommit(false);
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.execute();
+			ps.close();
+			conn.commit();
+			conn.setAutoCommit(false);
+>>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 			conn.close();
 		}
 		catch(SQLException ex)
 		{
 			throw new RuntimeException(ex);
+<<<<<<< HEAD
 		}		
+=======
+		}
+		
+>>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 	}
 }
