@@ -12,22 +12,16 @@ import br.com.metodo.model.Bicicleta;
 public class BicicletaDAO implements DAO<Bicicleta>
 {
 	private Connection conn = new ConnectionFactory().getConnection();
-	
+
 	@Override
 	public void create(Bicicleta bicicleta)
 	{
-<<<<<<< HEAD
-		String sql = "INSERT INTO bicicleta (codigo,nome,modelo,cor,preco,descricao,tipo,material,guidao,peso,aro,freio,pneu,banco,marcha,amortecedor) VALUES(seq_numero.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		try
-		{
-=======
-		String sql = "INSERT INTO BICICLETA (nome,modelo,cor,preco,descricao,tipo,material,guidao,peso,aro,freio,pneu,banco,marcha,amortecedor) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO BICICLETA (codigo,nome,modelo,cor,preco,descricao,tipo,material,guidao,peso,aro,freio,pneu,banco,marcha,amortecedor) VALUES(SEQ_NUMERO.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try
 		{
 			conn.setAutoCommit(false);
->>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 			PreparedStatement ps = conn.prepareStatement(sql);
-			
+
 			ps.setString(1, bicicleta.getNome());
 			ps.setString(2, bicicleta.getModelo());
 			ps.setString(3, bicicleta.getCor());
@@ -43,14 +37,12 @@ public class BicicletaDAO implements DAO<Bicicleta>
 			ps.setString(13, bicicleta.getBanco());
 			ps.setString(14, bicicleta.getMarcha());
 			ps.setString(15, bicicleta.getAmortecedor());
-			
+
 			ps.execute();
 			ps.close();
-<<<<<<< HEAD
-=======
+
 			conn.commit();
 			conn.setAutoCommit(false);
->>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 			conn.close();
 		}
 		catch(SQLException ex)
@@ -62,25 +54,18 @@ public class BicicletaDAO implements DAO<Bicicleta>
 	@Override
 	public List<Bicicleta> read()
 	{
-<<<<<<< HEAD
-		String sql = "SELECT * FROM bicicleta";
-=======
 		String sql = "SELECT * FROM BICICLETA";
->>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 		try
 		{
 			List<Bicicleta> bicicletas = new ArrayList<Bicicleta>();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();			
-			
+
 			while(rs.next())
 			{
 				Bicicleta bicicleta = new Bicicleta();
-				
-<<<<<<< HEAD
+
 				bicicleta.setCodigo(rs.getInt("CODIGO"));
-=======
->>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 				bicicleta.setAmortecedor(rs.getString("AMORTECEDOR"));
 				bicicleta.setAro(rs.getInt("ARO"));
 				bicicleta.setBanco(rs.getString("BANCO"));
@@ -96,7 +81,7 @@ public class BicicletaDAO implements DAO<Bicicleta>
 				bicicleta.setPneu(rs.getString("PNEU"));
 				bicicleta.setPreco(rs.getDouble("PRECO"));
 				bicicleta.setTipo(rs.getString("TIPO"));
-				
+
 				bicicletas.add(bicicleta);				
 			}
 			conn.close();
@@ -109,53 +94,37 @@ public class BicicletaDAO implements DAO<Bicicleta>
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void update(Bicicleta bicicleta)
 	{
-			String sql = "UPDATE INTO bicicleta (nome,modelo,cor,preco,descricao,tipo,material,guidao,peso,aro,freio,pneu,banco,marcha,amortecedor) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) WHERE codigo = ?";
-			try
-			{
-				PreparedStatement ps = conn.prepareStatement(sql);
-				
-				ps.setString(1, bicicleta.getNome());
-				ps.setString(2, bicicleta.getModelo());
-				ps.setString(3, bicicleta.getCor());
-				ps.setDouble(4, bicicleta.getPreco());
-				ps.setString(5, bicicleta.getDescricao());
-				ps.setString(6, bicicleta.getTipo());
-				ps.setString(7, bicicleta.getMaterial());
-				ps.setString(8, bicicleta.getGuidao());
-				ps.setDouble(9, bicicleta.getPeso());
-				ps.setInt(10, bicicleta.getAro());
-				ps.setString(11, bicicleta.getFreio());
-				ps.setString(12, bicicleta.getPneu());
-				ps.setString(13, bicicleta.getBanco());
-				ps.setString(14, bicicleta.getMarcha());
-				ps.setString(15, bicicleta.getAmortecedor());
-				ps.setInt(16, bicicleta.getCodigo());
-				
-				ps.execute();
-				ps.close();
-				conn.close();
-=======
-	public void update(Bicicleta object)
-	{
-		String sql = "";
+		String sql = "UPDATE INTO bicicleta (nome,modelo,cor,preco,descricao,tipo,material,guidao,peso,aro,freio,pneu,banco,marcha,amortecedor) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) WHERE codigo = ?";
 		try
 		{
-			conn.setAutoCommit(false);
 			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setString(1, bicicleta.getNome());
+			ps.setString(2, bicicleta.getModelo());
+			ps.setString(3, bicicleta.getCor());
+			ps.setDouble(4, bicicleta.getPreco());
+			ps.setString(5, bicicleta.getDescricao());
+			ps.setString(6, bicicleta.getTipo());
+			ps.setString(7, bicicleta.getMaterial());
+			ps.setString(8, bicicleta.getGuidao());
+			ps.setDouble(9, bicicleta.getPeso());
+			ps.setInt(10, bicicleta.getAro());
+			ps.setString(11, bicicleta.getFreio());
+			ps.setString(12, bicicleta.getPneu());
+			ps.setString(13, bicicleta.getBanco());
+			ps.setString(14, bicicleta.getMarcha());
+			ps.setString(15, bicicleta.getAmortecedor());
+			ps.setInt(16, bicicleta.getCodigo());
+
 			ps.execute();
 			ps.close();
-			conn.commit();
-			conn.setAutoCommit(false);
 			conn.close();
->>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 		}
 		catch(SQLException ex)
 		{
 			throw new RuntimeException(ex);
-<<<<<<< HEAD
 		}		
 	}
 
@@ -166,39 +135,17 @@ public class BicicletaDAO implements DAO<Bicicleta>
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
-			
+
 			ps.setInt(1, bicicleta.getCodigo());
 			
 			ps.execute();
 			ps.close();
-=======
-		}
-		
-	}
-
-	@Override
-	public void delete(Bicicleta object)
-	{
-		String sql = "";
-		try
-		{
-			conn.setAutoCommit(false);
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.execute();
-			ps.close();
-			conn.commit();
-			conn.setAutoCommit(false);
->>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 			conn.close();
 		}
 		catch(SQLException ex)
 		{
 			throw new RuntimeException(ex);
-<<<<<<< HEAD
 		}		
-=======
-		}
-		
->>>>>>> 3ff4b988a7f4fc1b00ee31d663306f66ed21519d
 	}
 }
+

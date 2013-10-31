@@ -1,7 +1,5 @@
 package br.com.metodo.dao;
 
-import java.util.List;
-
 import br.com.metodo.model.Bicicleta;
 
 public class TesteBICICLETA
@@ -38,13 +36,13 @@ public class TesteBICICLETA
 		*/
 		
 		//deletar 
-		/*
+		
 		
 		BicicletaDAO bDAO = new BicicletaDAO();
 		Bicicleta bicicleta = new Bicicleta();
 		bicicleta.setCodigo(10);
 		bDAO.delete(bicicleta);
-		*/
+		
 		
 		//procurar
 		/*

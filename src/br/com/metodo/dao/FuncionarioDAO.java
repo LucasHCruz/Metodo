@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.metodo.model.Bicicleta;
+import br.com.metodo.model.Funcionario;
 
 public class FuncionarioDAO implements DAO<Funcionario>
 {
