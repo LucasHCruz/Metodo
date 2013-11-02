@@ -1,14 +1,18 @@
-<html lang="pt-br"><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Site da método">
-    <meta name="author" content="WEBTEKNOMARCA">
-    <link rel="shortcut icon" href="images/logo_metodo.png">
-
-    <title>Metal&uacute;rgica M&eacute;todo</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/jumbotron.css" rel="stylesheet">
-	<style type="text/css"></style></head>
+<html lang="pt-br">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="Site da método">
+	    <meta name="author" content="WEBTEKNOMARCA">
+	    <link rel="shortcut icon" href="images/logo_metodo.png">
+	
+	    <title>Metal&uacute;rgica M&eacute;todo</title>
+	    <script src="js/jquery.js"></script>
+   		<script src="js/bootstrap.min.js"></script>
+	    <link href="css/bootstrap.css" rel="stylesheet">
+	    <link href="css/jumbotron.css" rel="stylesheet">
+		<style type="text/css"></style>
+	</head>
 
 	<body>
 		<c:import url="navbar-top.jsp" />

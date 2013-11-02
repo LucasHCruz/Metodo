@@ -13,9 +13,9 @@ public class BicicletaController
 	@RequestMapping("/adicionaBicicleta")
 	public String create(Bicicleta bicicleta)
 	{
-		DAO<Bicicleta> dao = new BicicletaDAO();
-		dao.create(bicicleta);
-		return "";
+		//DAO<Bicicleta> dao = new BicicletaDAO();
+		//dao.create(bicicleta);
+		return "index";
 	}
 	
 	@RequestMapping("/pesquisaBicicleta")
