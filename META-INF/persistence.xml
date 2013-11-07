@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+     http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<persistence-unit name="tarefas">
+
+		<!-- provedor/implementacao do JPA -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<!-- entidades mapeada -->
+		<class>br.com.metodo.Bicicleta</class>
+		<class>br.com.metodo.Patinete</class>
+		<class>br.com.metodo.Funcionario</class>
+
+		<!-- dados da conexao -->
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@//localhost:1521/xe" />
+			<property name="javax.persistence.jdbc.user" value="lucas" />
+			<property name="javax.persistence.jdbc.password" value="lh1993" />
+
+			<!-- propriedades do hibernate -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+
+			<!-- atualiza o banco, gera as tabelas se for preciso -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+		</properties>
+	</persistence-unit>
+</persistence>
+

@@ -15,7 +15,7 @@ public class BicicletaController
 	{
 		//DAO<Bicicleta> dao = new BicicletaDAO();
 		//dao.create(bicicleta);
-		return "index";
+		return "default";
 	}
 	
 	@RequestMapping("/pesquisaBicicleta")
