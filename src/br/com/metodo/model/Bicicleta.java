@@ -1,5 +1,8 @@
 package br.com.metodo.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Bicicleta extends Produto
 {
 	private int aro;

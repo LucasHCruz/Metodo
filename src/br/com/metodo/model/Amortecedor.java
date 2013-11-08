@@ -1,16 +1,9 @@
 package br.com.metodo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
 public class Amortecedor
 {
-	@Id
-	@GeneratedValue
 	private String codigo;
-	private String modelo;
+	private String nome;
 
 	public String getCodigo()
 	{
@@ -22,13 +15,13 @@ public class Amortecedor
 		this.codigo = codigo;
 	}
 	
-	public String getModelo()
+	public String getNome()
 	{
-		return modelo;
+		return nome;
 	}
 	
-	public void setModelo(String modelo)
+	public void setNome(String nome)
 	{
-		this.modelo = modelo;
+		this.nome = nome;
 	}
 }

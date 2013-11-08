@@ -19,7 +19,6 @@ public class BicicletaDAO implements DAO<Bicicleta>
 		String sql = "INSERT INTO BICICLETA (codigo,nome,modelo,cor,preco,descricao,tipo,material,guidao,peso,aro,freio,pneu,banco,marcha,amortecedor) VALUES(SEQ_NUMERO.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try
 		{
-			conn.setAutoCommit(false);
 			PreparedStatement ps = conn.prepareStatement(sql);
 
 			ps.setString(1, bicicleta.getNome());
@@ -41,8 +40,6 @@ public class BicicletaDAO implements DAO<Bicicleta>
 			ps.execute();
 			ps.close();
 
-			conn.commit();
-			conn.setAutoCommit(false);
 			conn.close();
 		}
 		catch(SQLException ex)

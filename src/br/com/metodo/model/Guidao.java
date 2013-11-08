@@ -3,7 +3,7 @@ package br.com.metodo.model;
 public class Guidao
 {
 	private String codigo;
-	private String modelo;
+	private String nome;
 	
 	public String getCodigo()
 	{
@@ -15,13 +15,13 @@ public class Guidao
 		this.codigo = codigo;
 	}
 	
-	public String getModelo()
+	public String getNome()
 	{
-		return modelo;
+		return nome;
 	}
 	
-	public void setModelo(String modelo)
+	public void setNome(String nome)
 	{
-		this.modelo = modelo;
+		this.nome = nome;
 	}
 }

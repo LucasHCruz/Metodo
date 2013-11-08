@@ -26,7 +26,7 @@
 			</div>
 
 			<div class="pure-control-group">
-				<label for="foo">Supercalifragilistic Label</label> 
+				<label for="foo">Patinete Label</label> 
 				<input id="foo" type="text" placeholder="Enter something here...">
 			</div>
 			<div class="pure-control-group">
