@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.metodo.model.Guidao;
 import br.com.metodo.model.Guidao;
+import br.com.metodo.model.Guidao;
 
 public class GuidaoDAO implements DAO<Guidao>
 {
@@ -17,13 +18,12 @@ public class GuidaoDAO implements DAO<Guidao>
 	@Override
 	public void create(Guidao guidao)
 	{
-		String sql = "INSERT INTO guidao (codigo, nome) VALUES (?,?)";
+		String sql = "INSERT INTO guidao (codigo, nome) VALUES (SEQ_GUIDAO.nextval,?)";
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
-			ps.setString(1, guidao.getCodigo());
-			ps.setString(2, guidao.getNome());
+			ps.setString(1, guidao.getNome());
 			
 			ps.execute();
 			
@@ -32,6 +32,7 @@ public class GuidaoDAO implements DAO<Guidao>
 		}
 		catch (SQLException ex)
 		{
+			System.out.println(ex.getMessage());
 			throw new RuntimeException();
 		}
 	}
@@ -90,6 +91,34 @@ public class GuidaoDAO implements DAO<Guidao>
 			
 			ps.close();
 			conn.close();
+		}
+		catch(SQLException ex)
+		{
+			throw new RuntimeException();
+		}
+	}
+
+	@Override
+	public Guidao read(String codigo)
+	{
+		String sql = "SELECT codigo,nome FROM guidao";
+		
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			Guidao guidao = new Guidao();
+			
+			if(rs.next())
+			{
+				guidao.setCodigo(rs.getString("CODIGO"));
+				guidao.setNome(rs.getString("NOME"));
+			}
+			
+			ps.close();
+			conn.close();
+			
+			return guidao;
 		}
 		catch(SQLException ex)
 		{

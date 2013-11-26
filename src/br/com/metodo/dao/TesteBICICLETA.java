@@ -40,7 +40,7 @@ public class TesteBICICLETA
 		
 		BicicletaDAO bDAO = new BicicletaDAO();
 		Bicicleta bicicleta = new Bicicleta();
-		bicicleta.setCodigo(10);
+		bicicleta.setCodigo("10");
 		bDAO.delete(bicicleta);
 		
 		

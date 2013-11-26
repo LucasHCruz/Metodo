@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.metodo.model.Freio;
-import br.com.metodo.model.Freio;
 
 public class FreioDAO implements DAO<Freio>
 {
@@ -17,13 +16,12 @@ public class FreioDAO implements DAO<Freio>
 	@Override
 	public void create(Freio freio)
 	{
-		String sql = "INSERT INTO freio (codigo, nome) VALUES (?,?)";
+		String sql = "INSERT INTO freio (codigo, nome) VALUES (SEQ_FREIO.nextval,?)";
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
 
-			ps.setString(1, freio.getCodigo());
-			ps.setString(2, freio.getNome());
+			ps.setString(1, freio.getNome());
 
 			ps.execute();
 
@@ -33,6 +31,7 @@ public class FreioDAO implements DAO<Freio>
 		}
 		catch (SQLException ex)
 		{
+			System.out.println(ex.getMessage());
 			throw new RuntimeException();
 		}
 	}
@@ -91,6 +90,34 @@ public class FreioDAO implements DAO<Freio>
 
 			ps.close();
 			conn.close();
+		}
+		catch(SQLException ex)
+		{
+			throw new RuntimeException();
+		}
+	}
+
+	@Override
+	public Freio read(String codigo)
+	{
+		String sql = "SELECT codigo,nome FROM freio";
+		
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			Freio freio = new Freio();
+			
+			if(rs.next())
+			{
+				freio.setCodigo(rs.getString("CODIGO"));
+				freio.setNome(rs.getString("NOME"));
+			}
+			
+			ps.close();
+			conn.close();
+			
+			return freio;
 		}
 		catch(SQLException ex)
 		{

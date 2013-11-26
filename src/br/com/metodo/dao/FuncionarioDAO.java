@@ -16,18 +16,17 @@ public class FuncionarioDAO implements DAO<Funcionario>
 	@Override
 	public void create(Funcionario funcionario)
 	{
-		String sql = "INSERT INTO funcionario (registro,email,nome,sobrenome,cargo,senha,permissao) VALUES(?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO FUNCIONARIO (REGISTRO, E_MAIL, NOME, SOBRENOME, CARGO, SENHA, PERMISSAO) VALUES (SEQ_FUNCIONARIO.nextval, ?, ?, ?, ?, ?, ?)";
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
 
-			ps.setInt(1, funcionario.getRegistro());
-			ps.setString(2, funcionario.getEmail());
-			ps.setString(3, funcionario.getNome());
-			ps.setString(4, funcionario.getSobrenome());
-			ps.setString(5, funcionario.getCargo());
-			ps.setString(6, funcionario.getSenha());
-			ps.setInt(7, funcionario.getPermissao());
+			ps.setString(1, funcionario.getEmail().toLowerCase());
+			ps.setString(2, funcionario.getNome());
+			ps.setString(3, funcionario.getSobrenome());
+			ps.setString(4, funcionario.getCargo());
+			ps.setString(5, funcionario.getSenha());
+			ps.setInt(6, funcionario.getPermissao());
 
 			ps.execute();
 			ps.close();
@@ -54,7 +53,7 @@ public class FuncionarioDAO implements DAO<Funcionario>
 				Funcionario funcionario = new Funcionario();
 
 				funcionario.setRegistro(rs.getInt("REGISTRO"));
-				funcionario.setEmail(rs.getString("EMAIL"));
+				funcionario.setEmail(rs.getString("E_MAIL"));
 				funcionario.setNome(rs.getString("NOME"));
 				funcionario.setSobrenome(rs.getString("SOBRENOME"));
 				funcionario.setCargo(rs.getString("CARGO"));
@@ -75,12 +74,13 @@ public class FuncionarioDAO implements DAO<Funcionario>
 	@Override
 	public void update(Funcionario funcionario)
 	{
-		String sql = "UPDATE INTO funcionario (email,nome,sobrenome,cargo,senha,permissao) VALUES(?,?,?,?,?,?) WHERE registro = ?";
+		String sql = "UPDATE FUNCIONARIO SET E_MAIL = ?, NOME = ?, SOBRENOME = ?, CARGO = ?, SENHA = ?, PERMISSAO = ? WHERE REGISTRO =  ?";
+		
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
 
-			ps.setString(1, funcionario.getEmail());
+			ps.setString(1, funcionario.getEmail().toLowerCase());
 			ps.setString(2, funcionario.getNome());
 			ps.setString(3, funcionario.getSobrenome());
 			ps.setString(4, funcionario.getCargo());
@@ -101,7 +101,7 @@ public class FuncionarioDAO implements DAO<Funcionario>
 	@Override
 	public void delete(Funcionario funcionario)
 	{
-		String sql = "DELETE FROM bicicleta WHERE codigo = ?";
+		String sql = "DELETE FROM funcionario WHERE registro = ?";
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -116,5 +116,66 @@ public class FuncionarioDAO implements DAO<Funcionario>
 		{
 			throw new RuntimeException(ex);
 		}	
+	}
+
+	@Override
+	public Funcionario read(String codigo)
+	{
+		String sql = "SELECT * FROM funcionario where registro = ?";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, codigo);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			Funcionario funcionario = new Funcionario();
+			
+			if(rs.next())
+			{
+				funcionario.setRegistro(rs.getInt("REGISTRO"));
+				funcionario.setEmail(rs.getString("E_MAIL"));
+				funcionario.setNome(rs.getString("NOME"));
+				funcionario.setSobrenome(rs.getString("SOBRENOME"));
+				funcionario.setCargo(rs.getString("CARGO"));
+				funcionario.setSenha(rs.getString("SENHA"));
+				funcionario.setPermissao(rs.getInt("PERMISSAO"));
+			}
+			
+			ps.close();
+			conn.close();			
+			return funcionario;
+		}
+		catch(SQLException ex)
+		{
+			throw new RuntimeException(ex);
+		}
+	}
+
+	public boolean existeLogin(Funcionario funcionario)
+	{
+		String sql = "SELECT e_mail, senha FROM funcionario where e_mail = ? AND senha = ?";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, funcionario.getEmail().toLowerCase());
+			ps.setString(2, funcionario.getSenha());
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next())
+			{
+				ps.close();
+				conn.close();
+				return true;
+			}
+			ps.close();
+			conn.close();			
+			return false;
+		}
+		catch(SQLException ex)
+		{
+			throw new RuntimeException(ex);
+		}
 	}
 }

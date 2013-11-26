@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.metodo.model.Amortecedor;
+import br.com.metodo.model.MaterialRoda;
 import br.com.metodo.model.Roda;
 
 public class RodaDAO implements DAO<Roda>
@@ -17,13 +18,12 @@ public class RodaDAO implements DAO<Roda>
 	@Override
 	public void create(Roda roda)
 	{
-		String sql = "INSERT INTO roda (codigo, nome) VALUES (?,?)";
+		String sql = "INSERT INTO roda (codigo, nome) VALUES (SEQ_RODA.nextval,?)";
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
-			ps.setString(1, roda.getCodigo());
-			ps.setString(2, roda.getNome());
+			ps.setString(1, roda.getNome());
 			
 			ps.execute();
 			
@@ -95,6 +95,34 @@ public class RodaDAO implements DAO<Roda>
 		{
 			throw new RuntimeException();
 		}		
+	}
+
+	@Override
+	public Roda read(String codigo)
+	{
+		String sql = "SELECT codigo,nome FROM roda";
+
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			Roda roda = new Roda();
+
+			if(rs.next())
+			{
+				roda.setCodigo(rs.getString("CODIGO"));
+				roda.setNome(rs.getString("NOME"));
+			}
+
+			ps.close();
+			conn.close();
+
+			return roda;
+		}
+		catch(SQLException ex)
+		{
+			throw new RuntimeException();
+		}
 	}
 
 }

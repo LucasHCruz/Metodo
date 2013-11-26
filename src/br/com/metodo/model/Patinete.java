@@ -2,16 +2,16 @@ package br.com.metodo.model;
 
 public class Patinete extends Produto
 {
-	private int roda;
+	private String roda;
 	private String materialRoda;
 	private String materialPrancha;
 	
-	public int getRoda()
+	public String getRoda()
 	{
 		return roda;
 	}
 	
-	public void setRoda(int roda)
+	public void setRoda(String roda)
 	{
 		this.roda = roda;
 	}

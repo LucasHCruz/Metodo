@@ -24,4 +24,10 @@ public class TestController
 	{
 		return "formularios/formularioBicicleta";
 	}
+	
+	@RequestMapping("/test4")
+	public String test4()
+	{
+		return "cruds/crudBicicleta";
+	}
 }

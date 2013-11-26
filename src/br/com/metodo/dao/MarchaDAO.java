@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.metodo.model.Marcha;
 import br.com.metodo.model.Marcha;
+import br.com.metodo.model.Marcha;
 
 public class MarchaDAO implements DAO<Marcha>
 {
@@ -17,13 +18,12 @@ public class MarchaDAO implements DAO<Marcha>
 	@Override
 	public void create(Marcha marcha)
 	{
-		String sql = "INSERT INTO marcha (codigo, nome) VALUES (?,?)";
+		String sql = "INSERT INTO marcha (codigo, nome) VALUES (SEQ_MARCHA.nextval,?)";
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
-			ps.setString(1, marcha.getCodigo());
-			ps.setString(2, marcha.getNome());
+			ps.setString(1, marcha.getNome());
 			
 			ps.execute();
 			
@@ -32,6 +32,7 @@ public class MarchaDAO implements DAO<Marcha>
 		}
 		catch (SQLException ex)
 		{
+			System.out.println(ex.getMessage());
 			throw new RuntimeException();
 		}
 	}
@@ -95,6 +96,34 @@ public class MarchaDAO implements DAO<Marcha>
 		{
 			throw new RuntimeException();
 		}		
+	}
+
+	@Override
+	public Marcha read(String codigo)
+	{
+		String sql = "SELECT codigo,nome FROM marcha";
+		
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			Marcha marcha = new Marcha();
+			
+			if(rs.next())
+			{
+				marcha.setCodigo(rs.getString("CODIGO"));
+				marcha.setNome(rs.getString("NOME"));
+			}
+			
+			ps.close();
+			conn.close();
+			
+			return marcha;
+		}
+		catch(SQLException ex)
+		{
+			throw new RuntimeException();
+		}
 	}
 
 }

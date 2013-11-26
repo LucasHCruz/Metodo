@@ -11,6 +11,7 @@ public class Bicicleta extends Produto
 	private String banco;
 	private String marcha;
 	private String amortecedor;
+	private String guidao;
 
 	public int getAro()
 	{
@@ -71,4 +72,15 @@ public class Bicicleta extends Produto
 	{
 		this.amortecedor = amortecedor;
 	}	
+	
+	public String getGuidao()
+	{
+		return guidao;
+	}
+
+	public void setGuidao(String guidao)
+	{
+		this.guidao = guidao;
+	}
+
 }

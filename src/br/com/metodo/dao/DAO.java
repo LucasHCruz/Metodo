@@ -11,4 +11,6 @@ public interface DAO <MODEL>
 	public void update(MODEL object);
 	
 	public void delete(MODEL object);
+
+	public MODEL read(String codigo);
 }

@@ -16,13 +16,12 @@ public class AmortecedorDAO implements DAO<Amortecedor>
 	@Override
 	public void create(Amortecedor amortecedor)
 	{
-		String sql = "INSERT INTO amortecedor (codigo, nome) VALUES (?,?)";
+		String sql = "INSERT INTO amortecedor (codigo, nome) VALUES (SEQ_AMORTECEDOR.nextval,?)";
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
-			ps.setString(1, amortecedor.getCodigo());
-			ps.setString(2, amortecedor.getNome());
+			ps.setString(1, amortecedor.getNome());
 			
 			ps.execute();
 			
@@ -31,6 +30,7 @@ public class AmortecedorDAO implements DAO<Amortecedor>
 		}
 		catch (SQLException ex)
 		{
+			System.out.println(ex.getMessage());
 			throw new RuntimeException();
 		}
 	}
@@ -89,6 +89,34 @@ public class AmortecedorDAO implements DAO<Amortecedor>
 			
 			ps.close();
 			conn.close();
+		}
+		catch(SQLException ex)
+		{
+			throw new RuntimeException();
+		}
+	}
+
+	@Override
+	public Amortecedor read(String codigo)
+	{
+		String sql = "SELECT codigo,nome FROM amortecedor";
+		
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			Amortecedor amortecedor = new Amortecedor();
+			
+			if(rs.next())
+			{
+				amortecedor.setCodigo(rs.getString("CODIGO"));
+				amortecedor.setNome(rs.getString("NOME"));
+			}
+			
+			ps.close();
+			conn.close();
+			
+			return amortecedor;
 		}
 		catch(SQLException ex)
 		{

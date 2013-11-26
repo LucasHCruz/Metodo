@@ -2,7 +2,7 @@ package br.com.metodo.model;
 
 public abstract class Produto
 {
-	private int codigo;
+	private String codigo;
 	private String nome;
 	private String modelo;
 	private String cor;
@@ -10,7 +10,6 @@ public abstract class Produto
 	private String descricao;
 	private String tipo;
 	private String material;
-	private String guidao;
 	private double peso;
 
 	public String getNome()
@@ -92,24 +91,14 @@ public abstract class Produto
 	{
 		this.peso = peso;
 	}
-
-	public String getGuidao()
-	{
-		return guidao;
-	}
-
-	public void setGuidao(String guidao)
-	{
-		this.guidao = guidao;
-	}
-
-	public int getCodigo()
+	
+	public String getCodigo()
 	{
 		return codigo;
 	}
 
-	public void setCodigo(int codigo)
+	public void setCodigo(String string)
 	{
-		this.codigo = codigo;
+		this.codigo = string;
 	}	
 }
