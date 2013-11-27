@@ -163,15 +163,9 @@ public class FuncionarioDAO implements DAO<Funcionario>
 			
 			ResultSet rs = ps.executeQuery();
 			
-			if(rs.next())
-			{
-				ps.close();
-				conn.close();
-				return true;
-			}
 			ps.close();
-			conn.close();			
-			return false;
+			conn.close();
+			return rs.next();
 		}
 		catch(SQLException ex)
 		{
